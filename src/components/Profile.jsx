@@ -1,8 +1,9 @@
 import React from 'react';
+import classes from './Profile.module.css'
 
 function Profile() {
   return (
-    <main className="profile">
+    <main className={classes.profile}>
       <div>
         <img src=""></img>
       </div>
