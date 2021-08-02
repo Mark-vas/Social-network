@@ -1,0 +1,11 @@
+.posts{
+    margin-top: 10px;
+}
+
+.posts textarea{
+    resize: none;
+}
+
+.posts button{
+    display: block;
+}

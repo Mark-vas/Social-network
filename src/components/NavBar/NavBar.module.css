@@ -1,0 +1,10 @@
+.nav{
+    background-color: aqua;
+    width: 15%;
+    padding: 10px;
+}
+    
+.nav div{
+    display: flex;
+    flex-flow: column;
+}
