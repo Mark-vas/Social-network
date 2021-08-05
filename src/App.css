@@ -6,3 +6,9 @@
 .content{
     display: flex;
 }
+
+.content-page{
+    background-color: bisque;
+    width: 82%;
+    padding: 10px;
+}
