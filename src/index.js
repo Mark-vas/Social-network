@@ -1,16 +1,17 @@
+import store from './State/State';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
+let renderPage = () =>
+    ReactDOM.render(
+        <React.StrictMode>
+            <App state={store} />
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
 
+renderPage(store)
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-reportWebVitals();
+store.subscribe(renderPage)

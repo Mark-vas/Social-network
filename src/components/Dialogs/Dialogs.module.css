@@ -6,3 +6,7 @@ grid-template-columns: 25% 75%;
 .dialogs_item{
     background-color: azure;
 }
+
+.messages{
+    background-color: aqua;
+}
