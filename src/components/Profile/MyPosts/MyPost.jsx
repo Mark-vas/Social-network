@@ -8,12 +8,19 @@ const MyPost = (props) => {
   let newTextPost = React.createRef();
 
   let addNewPost = () => {
-    props.addPost()
+    debugger
+    let action = { type: 'ADD-NEW-POST' }
+    props.dispatch(action)
   }
 
   let changeTextPost = () => {
+    debugger
     let text = newTextPost.current.value
-    props.changePost(text)
+    let action = {
+      type: 'CHANGE-TEXT-POST',
+      newText: text,
+    }
+    props.dispatch(action)
   }
 
   return (

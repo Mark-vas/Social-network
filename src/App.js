@@ -16,8 +16,7 @@ const App = (props) => {
           <div className="content-page">
             <Route path='/profile' render={() =>
               <Profile {...props} state={props.state.getState()}
-                changePost={props.state.changePost.bind(props.state)}
-                addPost={props.state.addPost.bind(props.state)}
+                dispatch={props.state.dispatch.bind(props.state)}
               />}
             />
             <Route path='/messages' render={() =>

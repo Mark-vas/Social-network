@@ -2,12 +2,15 @@ let store = {
     _renderPage() {
 
     },
+    subscribe(observer) {
+        this._renderPage = observer
+    },
     _state: {
         profilePage: {
             postData: [
                 { id: 1, message: 'Это мой первый пост', likes: '102', repost: '5' },
-                { id: 2, message: 'Как у тебя дела?', likes: '232', repost: '10' },
-                { id: 3, message: 'Удачи тебе!', likes: '52', repost: '1' }
+                { id: 2, message: 'Привет всем!', likes: '232', repost: '10' },
+                { id: 3, message: 'Теперь я работаю Frontend-разработчиком', likes: '52', repost: '1' }
             ],
             textPost: ''
         },
@@ -29,7 +32,10 @@ let store = {
             { id: 3, name: 'Anton' }
         ]
     },
-    addPost() {
+    getState() {
+        return this._state
+    },
+    _addPost() {
         if (this._state.profilePage.textPost != '') {
             this._state.profilePage.postData.push({
                 id: 4,
@@ -41,15 +47,17 @@ let store = {
             this._state.profilePage.textPost = ''
         }
     },
-    changePost(text) {
+    _changePost(text) {
         this._state.profilePage.textPost = text
         this._renderPage(this._state)
     },
-    subscribe(observer) {
-        this._renderPage = observer
-    },
-    getState() {
-        return this._state
+    dispatch(action) {
+        debugger
+        if (action.type === 'ADD-NEW-POST') {
+            this._addPost()
+        } else if (action.type === 'CHANGE-TEXT-POST') {
+            this._changePost(action.newText)
+        }
     }
 }
 
