@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './MyPost.module.css'
 import Post from './Post/Post'
+import { addNewPostActionCreator, changeTextPostActionCreator } from '../../../State/ProfileReducer'
 
 const MyPost = (props) => {
   let postElements = props.state.postData.map(p => <Post message={p.message} likes={p.likes} repost={p.repost} />)
@@ -8,19 +9,12 @@ const MyPost = (props) => {
   let newTextPost = React.createRef();
 
   let addNewPost = () => {
-    debugger
-    let action = { type: 'ADD-NEW-POST' }
-    props.dispatch(action)
+    props.dispatch(addNewPostActionCreator())
   }
 
   let changeTextPost = () => {
-    debugger
     let text = newTextPost.current.value
-    let action = {
-      type: 'CHANGE-TEXT-POST',
-      newText: text,
-    }
-    props.dispatch(action)
+    props.dispatch(changeTextPostActionCreator(text))
   }
 
   return (

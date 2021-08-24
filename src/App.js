@@ -12,15 +12,16 @@ const App = (props) => {
       <div className="App">
         <Header />
         <div className="content">
-          <NavBar friends={props.state.getState().friends} />
+          <NavBar friends={props.state.getState()} />
           <div className="content-page">
             <Route path='/profile' render={() =>
               <Profile {...props} state={props.state.getState()}
-                dispatch={props.state.dispatch.bind(props.state)}
-              />}
+                dispatch={props.state.dispatch.bind(props.state)} />}
             />
             <Route path='/messages' render={() =>
-              <Dialogs {...props} state={props.state.getState().dialogsPage} />}
+              <Dialogs {...props} state={props.state.getState()}
+                dispatch={props.state.dispatch.bind(props.state)} />
+            }
             />
           </div>
         </div>
@@ -28,7 +29,5 @@ const App = (props) => {
     </BrowserRouter>
   );
 }
-
-// changePost={props.state.changePost.bind(props.state)} addPost={props.state.addPost.bind(props.state)}
 
 export default App;

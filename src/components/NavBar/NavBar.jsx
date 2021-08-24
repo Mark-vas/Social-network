@@ -12,7 +12,7 @@ const NavBar = (props) => {
             </div>
             <div className={classes.friends}>
                 <h3>Friends</h3>
-                <Friends friends={props.friends} />
+                <Friends friends={props.friends.friends} />
 
             </div>
         </nav>

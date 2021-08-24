@@ -10,3 +10,15 @@ grid-template-columns: 25% 75%;
 .messages{
     background-color: aqua;
 }
+
+.dialogs_item textarea{
+    resize: none;
+}
+
+.dialogs_item button{
+    display: block;
+}
+
+.messages textarea{
+    resize: none;
+}
