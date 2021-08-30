@@ -3,25 +3,27 @@ import './App.css';
 import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 const App = (props) => {
+  debugger
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <div className="content">
-          <NavBar friends={props.state.getState()} />
+          <NavBar friends={props.store.getState()} />
           <div className="content-page">
             <Route path='/profile' render={() =>
-              <Profile {...props} state={props.state.getState()}
-                dispatch={props.state.dispatch.bind(props.state)} />}
+              <Profile {...props} state={props.store.getState()}
+                dispatch={props.store.dispatch.bind(props.store)}
+              />}
             />
             <Route path='/messages' render={() =>
-              <Dialogs {...props} state={props.state.getState()}
-                dispatch={props.state.dispatch.bind(props.state)} />
-            }
+              <DialogsContainer {...props} state={props.store.getState()}
+                dispatch={props.store.dispatch.bind(props.store)}
+              />}
             />
           </div>
         </div>
@@ -31,3 +33,29 @@ const App = (props) => {
 }
 
 export default App;
+
+// const App = (props) => {
+//   debugger
+//   return (
+//     <BrowserRouter>
+//       <div className="App">
+//         <Header />
+//         <div className="content">
+//           <NavBar friends={props.store.getState()} />
+//           <div className="content-page">
+//             <Route path='/profile' render={() =>
+//               <Profile {...props} state={props.store.getState()}
+//                 dispatch={props.store.dispatch.bind(props.store)}
+//               />}
+//             />
+//             <Route path='/messages' render={() =>
+//               <DialogsContainer {...props} state={props.store.getState()}
+//                 dispatch={props.store.dispatch.bind(props.store)}
+//               />}
+//             />
+//           </div>
+//         </div>
+//       </div >
+//     </BrowserRouter>
+//   );
+// }

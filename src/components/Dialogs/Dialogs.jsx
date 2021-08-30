@@ -2,29 +2,29 @@ import React from 'react';
 import classes from './Dialogs.module.css'
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
-import { changeNewDialogActionCreator, addNewDialogActionCreator, changeNewMessageActionCreator, addNewMessageActionCreator } from '../../State/DialogsReducer'
 
 const Dialogs = (props) => {
+    debugger
     let dialogsElem = props.state.dialogsPage.dialogs.map(d => <Dialog id={d.id} name={d.name} />)
 
     let messagesElem = props.state.dialogsPage.messages.map(m => <Message message={m.message} />)
 
     let changeDialogs = (event) => {
         let nameDialog = event.target.value
-        props.dispatch(changeNewDialogActionCreator(nameDialog))
+        props.changeDialogsCont(nameDialog)
     }
 
     let addNewDialog = () => {
-        props.dispatch(addNewDialogActionCreator())
+        props.addNewDialogCont()
     }
 
     let changeMessage = (event) => {
         let changeNewMessage = event.target.value
-        props.dispatch(changeNewMessageActionCreator(changeNewMessage))
+        props.changeMessageCont(changeNewMessage)
     }
 
     let addNewMessages = () => {
-        props.dispatch(addNewMessageActionCreator())
+        props.addNewMessagesCont()
     }
 
     return (

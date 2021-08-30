@@ -1,13 +1,16 @@
-import store from './State/State';
+import store from './State/ReduxStore';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from 'react-redux';
 
 let renderPage = () =>
     ReactDOM.render(
         <React.StrictMode>
-            <App state={store} />
+
+            <App store={store} />
+
         </React.StrictMode>,
         document.getElementById('root')
     );

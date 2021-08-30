@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './MyPost.module.css'
 import Post from './Post/Post'
-import { addNewPostActionCreator, changeTextPostActionCreator } from '../../../State/ProfileReducer'
 
 const MyPost = (props) => {
   let postElements = props.state.postData.map(p => <Post message={p.message} likes={p.likes} repost={p.repost} />)
@@ -9,12 +8,12 @@ const MyPost = (props) => {
   let newTextPost = React.createRef();
 
   let addNewPost = () => {
-    props.dispatch(addNewPostActionCreator())
+    props.addNewPostCont()
   }
 
   let changeTextPost = () => {
     let text = newTextPost.current.value
-    props.dispatch(changeTextPostActionCreator(text))
+    props.changeTextPostCont(text)
   }
 
   return (

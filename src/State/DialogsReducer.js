@@ -3,19 +3,32 @@ const ADD_NEW_DIALOG = 'ADD-NEW-DIALOG'
 const CHANGE_NEW_MESSAGE = 'CHANGE-NEW-MESSAGE'
 const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE'
 
+let stateInitialization = {
+    dialogs: [
+        { id: 1, name: 'Alina' },
+        { id: 2, name: 'Misha' },
+        { id: 3, name: 'Anton' }
+    ],
+    dialogName: '',
+    messages: [
+        { id: 1, message: 'Хорошего дня!' },
+        { id: 2, message: 'Как дела?' },
+        { id: 3, message: 'Чем занят?' },
+    ],
+    messageText: ''
+}
+
 const _addNewDialog = (state) => {
     let lastNumberId = [...state.dialogs].pop()
     state.dialogs.push({
         id: lastNumberId.id + 1,
         name: state.dialogName
     })
-    // this._renderPage(this._state)
     state.dialogName = ''
 }
 
 const _changeDialog = (state, newNameDialog) => {
     state.dialogName = newNameDialog
-    // this._renderPage(this._state)
 }
 const _addNewMessage = (state) => {
     let lastMessageID = [...state.messages].pop()
@@ -23,15 +36,13 @@ const _addNewMessage = (state) => {
         id: lastMessageID.id + 1,
         message: state.messageText
     })
-    // this._renderPage(this._state)
     state.messageText = ''
 }
 const _changeMessage = (state, newMessage) => {
     state.messageText = newMessage
-    // this._renderPage(this._state)
 }
 
-const dialogsReducer = (state, action) => {
+const dialogsReducer = (state = stateInitialization, action) => {
     switch (action.type) {
         case ADD_NEW_DIALOG:
             _addNewDialog(state)
