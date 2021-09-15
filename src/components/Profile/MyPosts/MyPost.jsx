@@ -3,16 +3,15 @@ import classes from './MyPost.module.css'
 import Post from './Post/Post'
 
 const MyPost = (props) => {
-  let postElements = props.state.postData.map(p => <Post message={p.message} likes={p.likes} repost={p.repost} />)
 
-  let newTextPost = React.createRef();
+  let postElements = props.postData.map(p => <Post message={p.message} likes={p.likes} repost={p.repost} />)
 
   let addNewPost = () => {
     props.addNewPostCont()
   }
 
-  let changeTextPost = () => {
-    let text = newTextPost.current.value
+  let changeTextPost = (event) => {
+    let text = event.target.value
     props.changeTextPostCont(text)
   }
 
@@ -21,7 +20,7 @@ const MyPost = (props) => {
       <div>
         <h3>My posts</h3>
         <div>
-          <textarea onChange={changeTextPost} ref={newTextPost} value={props.state.textPost} cols="50" rows="3"></textarea>
+          <textarea onChange={changeTextPost} value={props.textPost} cols="50" rows="3"></textarea>
           <button onClick={addNewPost}>Добавить</button>
         </div>
       </div>

@@ -6,25 +6,16 @@ import Profile from './components/Profile/Profile';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-const App = (props) => {
-  debugger
+const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <div className="content">
-          <NavBar friends={props.store.getState()} />
+          <NavBar />
           <div className="content-page">
-            <Route path='/profile' render={() =>
-              <Profile {...props} state={props.store.getState()}
-                dispatch={props.store.dispatch.bind(props.store)}
-              />}
-            />
-            <Route path='/messages' render={() =>
-              <DialogsContainer {...props} state={props.store.getState()}
-                dispatch={props.store.dispatch.bind(props.store)}
-              />}
-            />
+            <Route path='/profile' render={() => <Profile />} />
+            <Route path='/messages' render={() => <DialogsContainer />} />
           </div>
         </div>
       </div >

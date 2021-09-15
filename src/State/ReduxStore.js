@@ -10,5 +10,6 @@ let mergeReducers = combineReducers({
 })
 
 let store = createStore(mergeReducers)
+window.store = store
 
 export default store

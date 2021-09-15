@@ -5,16 +5,16 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 
-let renderPage = () =>
-    ReactDOM.render(
-        <React.StrictMode>
+// let renderPage = () =>
+ReactDOM.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 
-            <App store={store} />
+// renderPage(store)
 
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-
-renderPage(store)
-
-store.subscribe(renderPage)
+// store.subscribe(renderPage)

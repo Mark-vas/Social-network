@@ -3,43 +3,25 @@ import { changeNewDialogActionCreator, addNewDialogActionCreator, changeNewMessa
 import Dialogs from './Dialogs'
 import { connect } from 'react-redux';
 
-const DialogsContainer = (props) => {
+let mapStateToProps = (state) => {
 
-    // let mapStateToProps = (state) => {
-    //     return {
-
-    //     }
-    // }
-
-    // let dispatchToProps = (dispatch) => {
-    //     return {
-
-    //     }
-    // }
-
-    // const SuperDialogsContainer = connect()()
-
-    let changeDialogsCont = (nameDialog) => {
-        // let nameDialog = event.target.value
-        props.dispatch(changeNewDialogActionCreator(nameDialog))
+    return {
+        dialogs: state.dialogsPage.dialogs,
+        messages: state.dialogsPage.messages,
+        dialogName: state.dialogsPage.dialogName,
+        messageText: state.dialogsPage.messageText
     }
-
-    let addNewDialogCont = () => {
-        props.dispatch(addNewDialogActionCreator())
-    }
-
-    let changeMessageCont = (changeNewMessage) => {
-        // let changeNewMessage = event.target.value
-        props.dispatch(changeNewMessageActionCreator(changeNewMessage))
-    }
-
-    let addNewMessagesCont = () => {
-        props.dispatch(addNewMessageActionCreator())
-    }
-
-    return (
-        <Dialogs state={props.state} changeDialogsCont={changeDialogsCont} addNewDialogCont={addNewDialogCont} changeMessageCont={changeMessageCont} addNewMessagesCont={addNewMessagesCont} />
-    )
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        changeDialogsCont: (nameDialog) => { dispatch(changeNewDialogActionCreator(nameDialog)) },
+        addNewDialogCont: () => { dispatch(addNewDialogActionCreator()) },
+        changeMessageCont: (changeNewMessage) => { dispatch(changeNewMessageActionCreator(changeNewMessage)) },
+        addNewMessagesCont: () => { dispatch(addNewMessageActionCreator()) }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer
