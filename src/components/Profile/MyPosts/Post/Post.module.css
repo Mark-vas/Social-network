@@ -1,16 +1,14 @@
 .posts{
-    background-color: burlywood;
+    padding: 5px;
     margin-top: 10px;
-    position: relative;
 }
 
 .newposts span{
-    position: absolute;
-    top: 14px;
-    left: 65px;
+
 }
 
 .newposts img{
-    width: 50px;
-    
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 30%;
 }

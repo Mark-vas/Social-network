@@ -47,10 +47,11 @@ let stateInitialization = {
 // }
 
 const profileReducer = (state = stateInitialization, action) => {
-    window.state = state
+
     let stateCopy
     switch (action.type) {
         case ADD_NEW_POST:
+            debugger
             let lastNumberId = [...state.postData].pop()
             if (state.textPost != '') {
                 stateCopy = { ...state }
@@ -63,6 +64,7 @@ const profileReducer = (state = stateInitialization, action) => {
                 stateCopy.textPost = ''
                 return stateCopy
             }
+            return state
 
         case CHANGE_TEXT_POST:
             stateCopy = { ...state, textPost: action.newText }

@@ -43,7 +43,6 @@ let stateInitialization = {
 // }
 
 const dialogsReducer = (state = stateInitialization, action) => {
-    window.state = state
     let stateCopy
     switch (action.type) {
         case ADD_NEW_DIALOG:
