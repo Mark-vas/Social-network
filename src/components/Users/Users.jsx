@@ -1,60 +1,51 @@
 import React from 'react';
 import classes from './Users.module.css'
+import *as axios from 'axios'
+// import { render } from '@testing-library/react';
 
-
-const Users = (props) => {
-    debugger
-
-    // props.setUsers(
-    //     {
-    //         users: [
-    //             { id: 1, follow: 'FOLLOW', fullname: 'Ivan V', status: 'online', location: 'Russia, Moscow' },
-    //             { id: 2, follow: 'UNFOLLOW', fullname: 'Lena M', status: 'offline', location: 'Russia, SPb' },
-    //             { id: 3, follow: 'FOLLOW', fullname: 'Sasha G', status: 'online', location: 'Russia, Kazan' },
-    //         ]
-    //     }
-    // )
-
-    if (props.users.length == 0) {
-        props.setUsers(
-            [
-                { id: 1, follow: 'FOLLOW', fullname: 'Ivan V', status: 'online', location: 'Russia, Moscow' },
-                { id: 2, follow: 'UNFOLLOW', fullname: 'Lena M', status: 'offline', location: 'Russia, SPb' },
-                { id: 3, follow: 'FOLLOW', fullname: 'Sasha G', status: 'online', location: 'Russia, Kazan' },
-            ]
-        )
+class Users extends React.Component {
+    constructor(props) {
+        super(props)
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            this.props.setUsers(response.data.items)
+            console.log(this.props)
+        })
     }
-
-    let clickFollow = (event) => {
+    clickFollow = (event) => {
         let id = event.target.id
         if (event.target.innerText == 'FOLLOW') {
-            props.changeFollow(id)
+            this.props.changeFollow(id)
         } else {
-            props.changeUnFollow(id)
+            this.props.changeUnFollow(id)
         }
     }
-
-    let usersElem = props.users.map((u) => {
-        return (
-            <div className={classes.user}>
-                <div>
-                    <img className={classes.user_img} src="images/man.png" alt="" />
-                    <button className={classes.user_b} id={u.id} onClick={clickFollow}>{u.follow}</button>
-                </div>
-                <div className={classes.inf}>
-                    <h3>{u.fullname}</h3>
-                    <p>{u.location}</p>
-                    <p>{u.status}</p>
-                </div>
-            </div>
-        )
-    })
-    debugger
-    return (
-        <div>
-            {usersElem}
+    render() {
+        return <div>
+            {this.props.users.map((u) => {
+                return (
+                    <div className={classes.user}>
+                        <div>
+                            <img className={classes.user_img} src="images/man.png" alt="" />
+                            {u.followed == 'true'
+                                ? <button className={classes.user_b} id={u.id} onClick={this.clickFollow}>FOLLOW</button>
+                                : <button className={classes.user_b} id={u.id} onClick={this.clickFollow}>UNFOLLOW</button>
+                            }
+                        </div>
+                        <div className={classes.inf}>
+                            <h3>{u.name}</h3>
+                            <p>Страна: {u.location == null
+                                ? 'Нет данных'
+                                : u.location}</p>
+                            <p>{u.status == null
+                                ? 'Всем привет! Я использую новую социальную сеть'
+                                : u.status}</p>
+                        </div>
+                    </div>
+                )
+            })}
         </div>
-    )
+
+    }
 }
 
 export default Users
