@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import NavBar from './components/NavBar/NavBar';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -11,11 +11,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+        <HeaderContainer />
         <div className="content">
           <NavBar />
           <div className="content-page">
-            <Route path='/profile' render={() => <Profile />} />
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
             <Route path='/messages' render={() => <DialogsContainer />} />
             <Route path='/users' render={() => <UsersContainer />} />
           </div>
@@ -26,29 +26,3 @@ const App = () => {
 }
 
 export default App;
-
-// const App = (props) => {
-//   debugger
-//   return (
-//     <BrowserRouter>
-//       <div className="App">
-//         <Header />
-//         <div className="content">
-//           <NavBar friends={props.store.getState()} />
-//           <div className="content-page">
-//             <Route path='/profile' render={() =>
-//               <Profile {...props} state={props.store.getState()}
-//                 dispatch={props.store.dispatch.bind(props.store)}
-//               />}
-//             />
-//             <Route path='/messages' render={() =>
-//               <DialogsContainer {...props} state={props.store.getState()}
-//                 dispatch={props.store.dispatch.bind(props.store)}
-//               />}
-//             />
-//           </div>
-//         </div>
-//       </div >
-//     </BrowserRouter>
-//   );
-// }

@@ -5,7 +5,6 @@ const Post = (props) => {
   return (
     <div className={classes.posts}>
       <div className={classes.newposts}>
-
         <span><img align="middle" src='images/nzQUof-JqQ0.jpg'></img>
           {props.message}
         </span>

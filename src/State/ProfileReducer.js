@@ -1,5 +1,7 @@
 const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST'
 const ADD_NEW_POST = 'ADD-NEW-POST'
+const SET_PROFILE = 'SET_PROFILE'
+const TOGGLE_PRELOADER = 'TOGGLE_PRELOADER'
 
 let stateInitialization = {
     postData: [
@@ -8,48 +10,17 @@ let stateInitialization = {
         { id: 3, message: 'Теперь я работаю Frontend-разработчиком', likes: '52', repost: '1' }
     ],
     textPost: '',
+    profile: null,
+    toggleIsPreloader: true,
 }
-
-// const _addPost = (state) => {
-//     let lastNumberId = [...state.postData].pop()
-//     if (state.textPost != '') {
-//         state.postData.push({
-//             id: lastNumberId.id + 1,
-//             message: state.textPost,
-//             likes: 0,
-//             repost: 0
-//         })
-//         state.textPost = ''
-//     }
-// }
-
-// const _addPost = (state) => {
-//     let lastNumberId = [...state.postData].pop()
-//     if (state.textPost != '') {
-//         let stateCopy = { ...state }
-//         stateCopy.postData = [...state.postData]
-//         stateCopy.postData.push({
-//             id: lastNumberId.id + 1,
-//             message: state.textPost,
-//             likes: 0,
-//             repost: 0
-//         })
-//         state.textPost = ''
-//         return stateCopy
-//     }
-// }
-
-// const _changePost = (state, text) => {
-//     debugger
-//     let stateCopy = { ...state }
-//     stateCopy.textPost = text
-//     return stateCopy
-// }
-
 const profileReducer = (state = stateInitialization, action) => {
 
     let stateCopy
     switch (action.type) {
+        case TOGGLE_PRELOADER:
+            debugger
+            return { ...state, isPreloader: action.toggleIsPreloader }
+
         case ADD_NEW_POST:
             debugger
             let lastNumberId = [...state.postData].pop()
@@ -70,28 +41,15 @@ const profileReducer = (state = stateInitialization, action) => {
             stateCopy = { ...state, textPost: action.newText }
             return stateCopy
 
+        case SET_PROFILE:
+            return { ...state, profile: action.profile }
+
         default:
             return state
     }
-
-    // switch (action.type) {
-    //     case ADD_NEW_POST:
-    //         _addPost(state)
-    //     case CHANGE_TEXT_POST:
-    //         _changePost(state, action.newText)
-    //     default:
-    //         return state
-    // }
-    // if (action.type === ADD_NEW_POST) {
-    //     _addPost(state)
-    // } else if (action.type === CHANGE_TEXT_POST) {
-    //     _changePost(state, action.newText)
-    // }
-    // return state
 }
 
 export default profileReducer
-
 
 export const addNewPostActionCreator = () => ({ type: ADD_NEW_POST })
 
@@ -99,3 +57,10 @@ export const changeTextPostActionCreator = (text) => ({
     type: CHANGE_TEXT_POST,
     newText: text,
 })
+
+export const setProfileAC = (profile) => ({
+    type: SET_PROFILE,
+    profile
+})
+
+export const setIsPreloaderAC = (isPreloader) => ({ type: TOGGLE_PRELOADER, isPreloader })

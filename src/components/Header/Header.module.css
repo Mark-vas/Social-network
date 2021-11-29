@@ -5,3 +5,11 @@ background-color: lightgreen;
 .header img{
     width: 60px;
 }
+
+.login{
+    float: right;
+}
+
+.login h3{
+    padding-right: 5px;
+}

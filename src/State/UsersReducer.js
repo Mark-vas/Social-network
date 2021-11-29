@@ -1,25 +1,34 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const TOGGLE_PRELOADER = 'TOGGLE_PRELOADER'
 
 let stateInitialization = {
-    users: [
-        //         { id: 1, follow: 'FOLLOW', fullname: 'Ivan V', status: 'online', location: 'Russia, Moscow' },
-        //         { id: 2, follow: 'UNFOLLOW', fullname: 'Lena M', status: 'offline', location: 'Russia, SPb' },
-        //         { id: 3, follow: 'FOLLOW', fullname: 'Sasha G', status: 'online', location: 'Russia, Kazan' },
-    ],
+    users: [],
+    currentPage: 1,
+    totalCount: 5,
+    isPreloader: true
 }
 
 const usersReducer = (state = stateInitialization, action) => {
 
     let stateCopy
     switch (action.type) {
+        case TOGGLE_PRELOADER:
+            debugger
+            return { ...state, isPreloader: action.isPreloader }
+
+        case SET_CURRENT_PAGE:
+            debugger
+            return { ...state, currentPage: action.numberPage }
+
         case SET_USERS:
-            // debugger
+            debugger
             return { ...state, users: [...action.users] }
 
         case FOLLOW:
-            // debugger
+            debugger
             stateCopy = {
                 ...state,
                 users: [...state.users].map((u) => {
@@ -32,7 +41,7 @@ const usersReducer = (state = stateInitialization, action) => {
             return stateCopy
 
         case UNFOLLOW:
-            // debugger
+            debugger
             stateCopy = {
                 ...state,
                 users: [...state.users].map((u) => {
@@ -55,3 +64,7 @@ export const followAC = (userID) => ({ type: FOLLOW, userID })
 export const unfollowAC = (userID) => ({ type: UNFOLLOW, userID, })
 
 export const setUsersAC = (users) => ({ type: SET_USERS, users })
+
+export const setCurrentPageAC = (numberPage) => ({ type: SET_CURRENT_PAGE, numberPage })
+
+export const setIsPreloaderAC = (isPreloader) => ({ type: TOGGLE_PRELOADER, isPreloader })
