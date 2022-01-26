@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api"
+
 const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST'
 const ADD_NEW_POST = 'ADD-NEW-POST'
 const SET_PROFILE = 'SET_PROFILE'
@@ -49,18 +51,26 @@ const profileReducer = (state = stateInitialization, action) => {
     }
 }
 
-export default profileReducer
-
 export const addNewPostActionCreator = () => ({ type: ADD_NEW_POST })
 
 export const changeTextPostActionCreator = (text) => ({
-    type: CHANGE_TEXT_POST,
-    newText: text,
+    type: CHANGE_TEXT_POST, newText: text,
 })
 
 export const setProfileAC = (profile) => ({
-    type: SET_PROFILE,
-    profile
+    type: SET_PROFILE, profile
 })
 
 export const setIsPreloaderAC = (isPreloader) => ({ type: TOGGLE_PRELOADER, isPreloader })
+
+export const setProfilePageThunkCreator = (userId) => {
+    return (dispatch) => {
+        usersAPI.getProfilePage(userId)
+            .then(response => {
+                dispatch(setIsPreloaderAC(false))
+                dispatch(setProfileAC(response))
+            })
+    }
+}
+
+export default profileReducer

@@ -4,7 +4,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import NavBar from './components/NavBar/NavBar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
+import UsersAPI from './components/Users/UsersAPI';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
           <div className="content-page">
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
             <Route path='/messages' render={() => <DialogsContainer />} />
-            <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/users' render={() => <UsersAPI />} />
           </div>
         </div>
       </div >

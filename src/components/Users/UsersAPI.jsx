@@ -1,51 +1,41 @@
 import React from 'react';
-import *as axios from 'axios'
 import Users from './Users '
 import Preloader from '../Preloader/Preloader'
+import { connect } from 'react-redux';
+import { followThunkCreator, unfollowThunkCreator, getUsersThunkCreator, clickPageThunkCreator } from '../../State/UsersReducer'
 
 class UsersAPI extends React.Component {
 
     componentDidMount() {
-        debugger
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users/?page=${this.props.currentPage}`, { withCredentials: true })
-            .then(response => {
-                debugger
-                this.props.toggleIsFetching(false)
-                debugger
-                this.props.setUsers(response.data.items)
-            })
+        this.props.getUsersThunkCreator(this.props.currentPage)
     }
 
     clickPage = (numberPage) => {
-        debugger
-        this.props.setCurrentPage(numberPage)
-        debugger
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users/?page=${numberPage}`, { withCredentials: true }).then(response => {
-            debugger
-            this.props.setUsers(response.data.items)
-        })
-    }
-
-    clickFollow = (id, followed) => {
-        debugger
-        if (followed) {
-            this.props.changeFollow(id)
-        } else this.props.changeUnFollow(id)
-
+        this.props.clickPageThunkCreator(numberPage)
     }
 
     render() {
-        debugger
         return <>
             <Preloader isPreloader={this.props.isPreloader} />
-            <Users totalCount={this.props.totalCount}
+            <Users
+                isDisabled={this.props.isDisabled}
+                totalCount={this.props.totalCount}
                 clickPage={this.clickPage}
-                currentPage={this.props.currentPage}
                 users={this.props.users}
-                clickFollow={this.clickFollow}
+                followThunkCreator={this.props.followThunkCreator}
+                unfollowThunkCreator={this.props.unfollowThunkCreator}
             />
         </>
     }
 }
+let mapStateToProps = (state) => {
+    return {
+        users: state.usersPage.users,
+        currentPage: state.usersPage.currentPage,
+        totalCount: state.usersPage.totalCount,
+        isPreloader: state.usersPage.isPreloader,
+        isDisabled: state.usersPage.isDisabled,
+    }
+}
 
-export default UsersAPI
+export default connect(mapStateToProps, { followThunkCreator, unfollowThunkCreator, getUsersThunkCreator, clickPageThunkCreator })(UsersAPI)

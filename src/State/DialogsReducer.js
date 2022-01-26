@@ -18,30 +18,6 @@ let stateInitialization = {
     messageText: ''
 }
 
-// const _addNewDialog = (state) => {
-//     let lastNumberId = [...state.dialogs].pop()
-//     state.dialogs.push({
-//         id: lastNumberId.id + 1,
-//         name: state.dialogName
-//     })
-//     state.dialogName = ''
-// }
-
-// const _changeDialog = (state, newNameDialog) => {
-//     state.dialogName = newNameDialog
-// }
-// const _addNewMessage = (state) => {
-//     let lastMessageID = [...state.messages].pop()
-//     state.messages.push({
-//         id: lastMessageID.id + 1,
-//         message: state.messageText
-//     })
-//     state.messageText = ''
-// }
-// const _changeMessage = (state, newMessage) => {
-//     state.messageText = newMessage
-// }
-
 const dialogsReducer = (state = stateInitialization, action) => {
     let stateCopy
     switch (action.type) {
@@ -81,19 +57,6 @@ const dialogsReducer = (state = stateInitialization, action) => {
             return state
     }
 }
-
-// switch (action.type) {
-//     case ADD_NEW_DIALOG:
-//         _addNewDialog(state)
-//     case CHANGE_LIST_DIALOGS:
-//         _changeDialog(state, action.newNameDialog)
-//     case ADD_NEW_MESSAGE:
-//         _addNewMessage(state)
-//     case CHANGE_NEW_MESSAGE:
-//         _changeMessage(state, action.newMessage)
-//     default:
-//         return state
-// }
 
 export default dialogsReducer
 
