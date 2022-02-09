@@ -16,6 +16,7 @@ export const usersAPI = {
     getMeProfile() {
         return instance.get('auth/me')
             .then(res => {
+                // debugger
                 return res.data
             })
     },

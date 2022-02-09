@@ -4,7 +4,7 @@ import Preloader from '../Preloader/Preloader'
 import { connect } from 'react-redux';
 import { followThunkCreator, unfollowThunkCreator, getUsersThunkCreator, clickPageThunkCreator } from '../../State/UsersReducer'
 
-class UsersAPI extends React.Component {
+class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.getUsersThunkCreator(this.props.currentPage)
@@ -38,4 +38,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { followThunkCreator, unfollowThunkCreator, getUsersThunkCreator, clickPageThunkCreator })(UsersAPI)
+export default connect(mapStateToProps, { followThunkCreator, unfollowThunkCreator, getUsersThunkCreator, clickPageThunkCreator })(UsersContainer)

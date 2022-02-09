@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import { authThunkCreator } from '../../State/AuthReducer'
 
 class HeaderContainer extends React.Component {
+
     componentDidMount() {
         this.props.authThunkCreator()
     }
     render() {
         return <Header login={this.props.login} isAuth={this.props.isAuth} />
     }
-
 }
 
 let mapStateToProps = (state) => {
-
     return {
         login: state.auth.login,
         isAuth: state.auth.isAuth,

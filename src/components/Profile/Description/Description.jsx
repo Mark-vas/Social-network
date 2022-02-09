@@ -2,10 +2,21 @@ import React from 'react';
 import classes from './Description.module.css'
 import Preloader from '../../Preloader/Preloader';
 import img_Profile from '../../../images/profile.png'
+import my_img_Profile from '../../../images/nzQUof-JqQ0.jpg'
 
 const Description = (props) => {
-  debugger
+  // debugger
   if (!props.profile) {
+    // return <div>
+    //   <div className={classes.avatar}>
+    //     <img src={my_img_Profile} />
+    //   </div>
+    //   <div className={classes.information}>
+    //     <h3>Vasyaev Mark</h3>
+    //     <p>Я поленился что-либо писать о себе</p>
+    //     <p>В поиске работы: да</p>
+    //   </div>
+    // </div>
     return <Preloader isPreloader={props.isPreloader} />
   }
   return (

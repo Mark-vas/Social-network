@@ -3,7 +3,7 @@ import classes from './MyPost.module.css'
 import Post from './Post/Post'
 
 const MyPost = (props) => {
-
+  // debugger
   let postElements = props.postData.map(p => <Post message={p.message} likes={p.likes} repost={p.repost} />)
 
   let addNewPost = () => {

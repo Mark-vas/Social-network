@@ -26,6 +26,7 @@ export const authThunkCreator = () => {
     return (dispatch) => {
         usersAPI.getMeProfile()
             .then(response => {
+                // debugger
                 if (response.resultCode === 0) {
                     dispatch(authAC(response.data))
                 }
