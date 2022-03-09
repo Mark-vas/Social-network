@@ -10,8 +10,9 @@ let mapStateToPropsForRedirect = (state) => {
 
 export const WithAuthRedirect = (Component) => {
     let WrapperContainer = (props) => {
+        // debugger
         if (!props.isAuth) {
-            return <Redirect to='/login' />
+            return <Redirect to='/auth/login' />
         }
         return <Component {...props} />
     }

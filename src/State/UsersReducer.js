@@ -10,7 +10,7 @@ const TOGGLE_DISABLED = 'TOGGLE_DISABLED'
 let stateInitialization = {
     users: [],
     currentPage: 1,
-    totalCount: 5,
+    totalCount: 10,
     isPreloader: true,
     isDisabled: [],
 }

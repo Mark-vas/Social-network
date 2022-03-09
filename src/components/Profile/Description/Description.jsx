@@ -2,21 +2,10 @@ import React from 'react';
 import classes from './Description.module.css'
 import Preloader from '../../Preloader/Preloader';
 import img_Profile from '../../../images/profile.png'
-import my_img_Profile from '../../../images/nzQUof-JqQ0.jpg'
+import StatusProfile from '../Status/StatusProfile';
 
 const Description = (props) => {
-  // debugger
   if (!props.profile) {
-    // return <div>
-    //   <div className={classes.avatar}>
-    //     <img src={my_img_Profile} />
-    //   </div>
-    //   <div className={classes.information}>
-    //     <h3>Vasyaev Mark</h3>
-    //     <p>Я поленился что-либо писать о себе</p>
-    //     <p>В поиске работы: да</p>
-    //   </div>
-    // </div>
     return <Preloader isPreloader={props.isPreloader} />
   }
   return (
@@ -30,6 +19,7 @@ const Description = (props) => {
       </div>
       <div className={classes.information}>
         <h3>{props.profile.fullName}</h3>
+        <StatusProfile status={props.status} updateProfileStatus={props.updateProfileStatus} />
         {props.profile.aboutMe == null
           ? <p>Я поленился что-либо писать о себе</p>
           : <p>{props.profile.aboutMe}</p>

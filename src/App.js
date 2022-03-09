@@ -19,7 +19,7 @@ const App = () => {
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
             <Route path='/messages' render={() => <DialogsContainer />} />
             <Route path='/users' render={() => <UsersContainer />} />
-            <Route path='/login' render={() => <Login />} />
+            <Route path='/auth/login' render={() => <Login />} />
           </div>
         </div>
       </div >

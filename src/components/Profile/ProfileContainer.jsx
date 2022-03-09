@@ -1,48 +1,48 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { setProfilePageThunkCreator, meProfilePageThunkCreator } from '../../State/ProfileReducer'
+import { setProfilePageThunkCreator, getProfileStatus, updateProfileStatus } from '../../State/ProfileReducer'
 import { withRouter } from 'react-router';
-// import Description from './Description/Description';
-// import { Redirect } from 'react-router-dom';
 import { WithAuthRedirect } from '../Hoc/Hoc'
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        // if (!this.props.match.params.userId) {
-        //     this.props.meProfilePageThunkCreator()
-        // }
         // debugger
         let userId = this.props.match.params.userId
         this.props.setProfilePageThunkCreator(userId)
+        debugger
+        this.props.getProfileStatus(userId)
     }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     debugger
+    //     if (!this.props.profile == prevProps.profile) {
+    //         let userId = this.props.match.params.userId
+    //         this.props.setProfilePageThunkCreator(userId)
+    //         debugger
+    //         this.props.getProfileStatus(userId)
+    //     }
+    // }
+
     render() {
-        // if (!this.props.isAuth) {
-        //     return <Redirect to='/login' />
-        // }
-        return <>
-            < Profile {...this.props} profile={this.props.profile} />
-        </>
-
-
+        return < Profile {...this.props} profile={this.props.profile} status={this.props.status} updateProfileStatus={this.props.updateProfileStatus} />
     }
 }
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
         isPreloader: state.profilePage.toggleIsPreloader,
+        status: state.profilePage.status,
     }
 }
 
 export default compose(
-    connect(mapStateToProps, { setProfilePageThunkCreator, }),
+    connect(mapStateToProps, { setProfilePageThunkCreator, getProfileStatus, updateProfileStatus }),
     withRouter,
-    // WithAuthRedirect,
+    WithAuthRedirect,
 )(ProfileContainer)
 
 // let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
-
 // let WithRouterProfileContainer = withRouter(AuthRedirectComponent)
-
 // export default connect(mapStateToProps, { setProfilePageThunkCreator, })(WithRouterProfileContainer)

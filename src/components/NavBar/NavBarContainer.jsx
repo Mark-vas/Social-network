@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import { WithAuthRedirect } from '../Hoc/Hoc'
 import NavBar from "./NavBar";
 import { connect } from 'react-redux';
-import Preloader from "../Preloader/Preloader";
 
 class NavBarContainer extends React.Component {
     componentDidMount() {
@@ -13,14 +12,7 @@ class NavBarContainer extends React.Component {
         this.props.getMeProfilePageThunkCreator()
     }
     render() {
-        // if (!this.myProfile) {
-        //     return <Preloader isPreloader={this.props.isPreloader} />
-        // }
-
-        return <>
-            {/* <Preloader isPreloader={this.props.isPreloader} /> */}
-            <NavBar {...this.props} myProfile={this.props.myProfile} />
-        </>
+        return <NavBar {...this.props} myProfile={this.props.myProfile} />
     }
 }
 
@@ -34,5 +26,5 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps, { getMeProfilePageThunkCreator, }),
     withRouter,
-    WithAuthRedirect,
+    // WithAuthRedirect,
 )(NavBarContainer)

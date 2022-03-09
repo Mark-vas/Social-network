@@ -9,14 +9,14 @@ const Dialogs = (props) => {
 
     let messagesElem = props.messages.map(m => <Message message={m.message} />)
 
-    let changeDialogs = (event) => {
-        let nameDialog = event.target.value
-        props.changeDialogsCont(nameDialog)
-    }
+    // let changeDialogs = (event) => {
+    //     let nameDialog = event.target.value
+    //     props.changeDialogsCont(nameDialog)
+    // }
 
-    let addNewDialog = () => {
-        props.addNewDialogCont()
-    }
+    // let addNewDialog = () => {
+    //     props.addNewDialogCont()
+    // }
 
     let changeMessage = (event) => {
         let changeNewMessage = event.target.value
@@ -31,8 +31,8 @@ const Dialogs = (props) => {
         <div className={classes.dialogs}>
             <div className={classes.dialogs_item}>
                 {dialogsElem}
-                <textarea onChange={changeDialogs} value={props.dialogName} cols="20" rows="1"></textarea>
-                <button onClick={addNewDialog}>Add</button>
+                {/* <textarea onChange={changeDialogs} value={props.dialogName} cols="20" rows="1"></textarea>
+                <button onClick={addNewDialog}>Add</button> */}
             </div>
             <div className={classes.messages}>
                 {messagesElem}

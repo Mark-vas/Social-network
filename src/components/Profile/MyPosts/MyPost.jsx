@@ -1,28 +1,22 @@
 import React from 'react';
 import classes from './MyPost.module.css'
 import Post from './Post/Post'
+import FormPost from './FormPost/FormPost'
 
 const MyPost = (props) => {
-  // debugger
   let postElements = props.postData.map(p => <Post message={p.message} likes={p.likes} repost={p.repost} />)
 
-  let addNewPost = () => {
-    props.addNewPostCont()
-  }
+  let addNewPost = (data) => {
 
-  let changeTextPost = (event) => {
-    let text = event.target.value
-    props.changeTextPostCont(text)
+    props.addNewPostCont(data.newPost)
+    data.newPost = ''
   }
 
   return (
     <div className={classes.posts}>
       <div>
         <h3>My posts</h3>
-        <div>
-          <textarea onChange={changeTextPost} value={props.textPost} cols="50" rows="3"></textarea>
-          <button onClick={addNewPost}>Добавить</button>
-        </div>
+        <FormPost onSubmit={addNewPost} />
       </div>
       {postElements}
     </div>

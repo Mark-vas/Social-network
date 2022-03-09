@@ -33,9 +33,40 @@ export const usersAPI = {
             })
     },
     getProfilePage(id) {
+        console.log('Изменил название запроса страницы Юзера')
+        return profileAPI.getProfilePage(id)
+    }
+}
+
+export const profileAPI = {
+    getProfilePage(id) {
         return instance.get(`profile/${id}`)
             .then(res => {
                 return res.data
+            })
+    },
+    getProfileStatus(id) {
+        // debugger
+        return instance.get(`profile/status/${id}`)
+            .then(res => {
+                // debugger
+                return res.data
+            })
+    },
+    updateStatus(status) {
+        return instance.put('profile/status', { status: status })
+            .then(res => {
+                // debugger
+                return res.data
+            })
+    }
+}
+
+export const authAPI = {
+    postAuthUser() {
+        return instance.post('auth/login', {})
+            .then(res => {
+                debugger
             })
     }
 }
