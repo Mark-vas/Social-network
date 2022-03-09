@@ -1,33 +1,33 @@
-import React from 'react';
-import LoginForm from './LoginForm'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React from "react";
+import LoginForm from "./LoginForm";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 class Login extends React.Component {
+  authUser = (data) => {
+    // debugger
+    // dfsafasfse
+    console.log(data);
+  };
 
-    authUser = (data) => {
-        // debugger
-        console.log(data)
-    }
-
-    render() {
-        return < div >
-            <h1>Login</h1>
-            <LoginForm onSubmit={this.authUser} />
-        </div >
-    }
+  render() {
+    return (
+      <div>
+        <h1>Login</h1>
+        <LoginForm onSubmit={this.authUser} />
+      </div>
+    );
+  }
 }
 
 let mapStateToProps = (state) => {
-    // debugger
-    return {
-        form: state.form.login
-    }
-}
+  // debugger
+  return {
+    form: state.form.login,
+  };
+};
 
-export default compose(
-    connect(mapStateToProps)(Login)
-)
+export default compose(connect(mapStateToProps)(Login));
 
 // Функциональная компонента
 // import { reduxForm, Field } from 'redux-form';
