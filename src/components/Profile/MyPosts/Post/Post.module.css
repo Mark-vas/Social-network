@@ -1,0 +1,14 @@
+.posts{
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.newposts span{
+
+}
+
+.newposts img{
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 30%;
+}

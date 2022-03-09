@@ -1,0 +1,24 @@
+.dialogs{
+display: grid;
+grid-template-columns: 25% 75%;
+}
+
+.dialogs_item{
+    background-color: azure;
+}
+
+.messages{
+    background-color: aqua;
+}
+
+.dialogs_item textarea{
+    resize: none;
+}
+
+.dialogs_item button{
+    display: block;
+}
+
+.messages textarea{
+    resize: none;
+}

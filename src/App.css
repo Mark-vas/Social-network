@@ -3,25 +3,12 @@
     margin: 0 auto;
 }
 
-.header{
-background-color: crimson;
-}
-
 .content{
     display: flex;
 }
 
-.nav{
-background-color: aqua;
-width: 20%;
-}
-
-.nav div{
-    display: flex;
-    flex-flow: column;
-}
-
-.profile{
-background-color: bisque;
-width: 80%;
+.content-page{
+    background-color: bisque;
+    width: 82%;
+    padding: 10px;
 }
